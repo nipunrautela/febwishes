@@ -1,0 +1,29 @@
+<header class="h-[8vh]">
+  <nav
+    class="flex justify-between max-lg:justify-around items-center px-20 bg-pink-300 bg-gradient-to-br p-4 text-white"
+  >
+    <a class="text-4xl font-extrabold text-stroke-1" [routerLink]="['']"
+      >FebWishes</a
+    >
+    <ul class="max-lg:hidden max-xl:text-xl text-2xl">
+      <button
+        [routerLink]="['']"
+        class="mx-2 px-6 py-2 rounded-md transition-all hover:font-extrabold hover:cursor-pointer hover:bg-pink-200 hover:text-blue-700"
+      >
+        Home
+      </button>
+      <button
+        [routerLink]="['lovedays']"
+        class="mx-2 px-6 py-2 rounded-md transition-all hover:font-extrabold hover:cursor-pointer hover:bg-pink-200 hover:text-blue-700"
+      >
+        Wishes
+      </button>
+      <button
+        [routerLink]="['about']"
+        class="mx-2 px-6 py-2 rounded-md transition-all hover:font-extrabold hover:cursor-pointer hover:bg-pink-200 hover:text-blue-700"
+      >
+        About
+      </button>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,13 @@
+<div
+  class="p-6 rounded-2xl mx-2 my-5 h-[100%]"
+  [ngClass]="{
+    'bg-red-200 hover:cursor-not-allowed': cardDisabled,
+    'bg-pink-200 hover:bg-pink-300 hover:cursor-pointer transition-transform scale-95 hover:scale-100': !cardDisabled
+  }"
+  (click)="handleCardClick()"
+>
+  <h2 class="text-3xl text-pink-600">{{ cardTitle }}</h2>
+  <p>{{ cardDate }}</p>
+  <hr />
+  <p class="py-4">{{ cardBody }}</p>
+</div>

@@ -1,1 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap");
 @import "tailwindcss";
+
+* {
+  font-family: "DynaPuff", serif;
+  font-optical-sizing: auto;
+}
+
+.text-stroke-1 {
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
