@@ -15,49 +15,42 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: LoveDaysComponent },
   {
     path: 'roseday', component: RosedayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]
   },
   {
     path: 'proposeday', component: ProposedayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]
   },
   {
     path: 'chocolateday', component: ChocolatedayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]
   },
   {
     path: 'teddyday', component: TeddydayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]
   },
   {
     path: 'promiseday', component: PromisedayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]
   },
   {
     path: 'hugday', component: HugdayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]
   },
   {
     path: 'valentinesday', component: ValentinesdayComponent, children: [
-      { path: 'build', component: RosedayBuildComponent },
       { path: 'preview', component: RosedayPreviewComponent },
       { path: '**', redirectTo: '' }
     ]

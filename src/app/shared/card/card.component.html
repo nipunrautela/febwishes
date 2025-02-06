@@ -1,8 +1,8 @@
 <div
-  class="p-6 rounded-2xl mx-2 my-5 h-[100%]"
+  class="p-6 rounded-2xl my-5 h-[100%]"
   [ngClass]="{
     'bg-red-200 hover:cursor-not-allowed': cardDisabled,
-    'bg-pink-200 hover:bg-pink-300 hover:cursor-pointer transition-transform scale-95 hover:scale-100': !cardDisabled
+    'bg-pink-200 hover:bg-pink-300 active:bg-pink-300 hover:cursor-pointer transition-transform scale-95 hover:scale-100 active:scale-100': !cardDisabled
   }"
   (click)="handleCardClick()"
 >
