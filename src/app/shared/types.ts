@@ -1,7 +1,10 @@
 import { Component } from "@angular/core";
 
 export type Components = {
-    [name: string]: [angularComponent: Component];
+    [name: string]: {
+        type: string;
+        ngComponent: Component;
+    };
 };
 
 export type Setup = {

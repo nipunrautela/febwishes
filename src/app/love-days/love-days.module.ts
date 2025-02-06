@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { LoveDaysRoutingModule } from './love-days-routing.module';
@@ -13,6 +14,7 @@ import { PromisedayComponent } from './promiseday/promiseday.component';
 import { HugdayComponent } from './hugday/hugday.component';
 import { ValentinesdayComponent } from './valentinesday/valentinesday.component';
 import { RosedayBuildComponent } from './roseday/roseday-build/roseday-build.component';
+import { LetterComponent } from '../shared/letter/letter.component';
 
 
 @NgModule({
@@ -27,12 +29,14 @@ import { RosedayBuildComponent } from './roseday/roseday-build/roseday-build.com
     PromisedayComponent,
     HugdayComponent,
     ValentinesdayComponent,
-    RosedayBuildComponent
+    RosedayBuildComponent,
+    LetterComponent
   ],
   imports: [
     CommonModule,
     LoveDaysRoutingModule,
-    DatePipe
+    DatePipe,
+    FormsModule
   ]
 })
 export class LoveDaysModule { }
