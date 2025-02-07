@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Setup } from '../../shared/types';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Base64 } from 'js-base64';
+
+import { Setup } from '../../shared/types';
 
 @Component({
   selector: 'app-roseday',
@@ -28,8 +30,7 @@ export class RosedayComponent implements AfterViewInit {
   constructor(private route: ActivatedRoute) {
     route.queryParams.subscribe(params => {
       if (params['data'] !== undefined) {
-        this.data = JSON.parse(atob(params['data']));
-        console.log(this.data);
+        this.data = JSON.parse(Base64.decode(params['data']));
       }
     });
   }
@@ -46,8 +47,7 @@ export class RosedayComponent implements AfterViewInit {
 
   onSubmit(form: NgForm) {
     const payload = JSON.stringify({ ...form.value, roseLink: this.roses[this.selectedRose] });
-    const encodedPayload = btoa(payload);
-    console.log(this.route);
+    const encodedPayload = Base64.encodeURI(payload);
     this.route.url.subscribe(url => {
       this.linkContainerRef.nativeElement.innerHTML = `https://febraury.love/lovedays/${url}?data=${encodedPayload}`;
       this.linkGenerated = true;
