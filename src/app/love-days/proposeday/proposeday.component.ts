@@ -68,7 +68,7 @@ export class ProposedayComponent {
     const payload = JSON.stringify(proposeForm.value);
     const encodedPayload = Base64.encodeURI(payload);
 
-    this.linkContainerRef.nativeElement.innerHTML = `http://localhost:4200/lovedays/proposeday?data=${encodedPayload}`
+    this.linkContainerRef.nativeElement.innerHTML = `https://febraury.love/lovedays/proposeday?data=${encodedPayload}`
   }
 
   copyLink() {
