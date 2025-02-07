@@ -1,4 +1,18 @@
-<div class="overflow-hidden w-[50vw] h-[30vw] bg-gray-100 outline-2">
-    <div class="relative bg-red-600 w-[10] h-[5px] translate-y-[20vw] -translate-x-[17vw] rotate-z-30"></div>
-    <div class="relative bg-red-600 w-[10] h-[5px] translate-y-[20vw] translate-x-[17vw] -rotate-z-30"></div>
+<div class="overflow-hidden w-[40vw] h-[25vw] max-sm:w-[70vw] max-sm:h-[40vw] bg-red-400 outline-2">
+  <div
+    class="relative w-[40vw] h-[40vw] max-sm:w-[70vw] max-sm:h-[70vw] bg-pink-300 outline-2 rotate-45 flex justify-center items-center"
+  >
+    <div class="relative -rotate-45 w-[20vw] -top-17 -left-17 max-md:-top-10 max-md:-left-10">
+      <div class="flex flex-col justify-center items-center">
+        <div class="text-center max-md:text-sm">To</div>
+        <div class="text-center text-4xl max-md:text-3xl max-md:text-md text-white text-stroke-1 mb-10 max-sm:mb-2">
+          {{ receiver }}
+        </div>
+        <div class="animate-bounce w-[10vw]">
+          <img src="favicon.png" alt="heart" />
+        </div>
+        <div class="text-center max-md:text-xs">Click to open</div>
+      </div>
+    </div>
+  </div>
 </div>

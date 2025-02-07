@@ -1,6 +1,116 @@
-<section class="h-[92vh]">
-    <h1 class="text-center text-6xl text-pink-700 py-10">Propose Day</h1>
-    <div class="flex flex-col justify-center items-center h-[auto] my-[20vh]">
-        <h1 class="w-1/3 text-center text-8xl bg-pink-400 p-10 rounded-2xl text-white text-stroke-1">Under Progress</h1>
+<section class="min-h-[92vh]">
+  <h1 class="text-center text-5xl text-pink-700 py-10">Propose Day</h1>
+
+  <div *ngIf="!!data">
+    <div class="flex flex-wrap justify-center items-center p-5">
+      <div
+        class="w-1/1 flex items-center justify-center"
+        (click)="hideMessage = !hideMessage"
+      >
+        <div class="transition-all active:scale-y-10 z-10 hover:cursor-pointer shadow-2xl shadow-pink-500">
+          <app-letter receiver="{{ data.receiver }}" />
+        </div>
+      </div>
+      <div
+        class="w-2/3 text-3xl max-md:text-lg p-5 bg-pink-50 text-gray-600 border-2 border-black transition-all shadow-2xl shadow-blue-500"
+        [ngClass]="{
+          'opacity-0': hideMessage,
+          'scale-0': hideMessage,
+          '-translate-y-100': hideMessage
+        }"
+      >
+        <div class="text-center">
+          <p class="text-sm">From</p>
+          <h2 class="pb-3 text-5xl max-md:text-3xl text-blue-500 text-stroke-1">
+            {{ data.sender }}
+          </h2>
+        </div>
+        {{ data.message }}
+      </div>
     </div>
+  </div>
+
+  <div *ngIf="!data" class="flex flex-col justify-center items-center">
+    <h3
+      class="text-2xl max-md:text-xl text-amber-200 text-stroke-1 pb-10 text-center"
+    >
+      Write a proposal letter <br />
+      (the romantic one, not the business one)
+    </h3>
+    <div class="bg-pink-50 p-5 rounded-2xl w-[80%] text-md">
+      <form
+        #proposeForm="ngForm"
+        (ngSubmit)="onFormSubmit(proposeForm)"
+        class="flex flex-wrap justify-center items-top"
+      >
+        <div class="w-1/2 max-md:w-1/1 flex flex-col text-center p-3">
+          <label for="sender" class="text-2xl">From</label>
+          <input
+            id="sender"
+            type="text"
+            name="sender"
+            ngModel
+            #sender="ngModel"
+            class="border-3 border-gray-600 rounded-md text-center p-2 focus:border-green-400"
+          />
+        </div>
+        <div class="w-1/2 max-md:w-1/1 flex flex-col text-center p-3">
+          <label for="receiver" class="text-2xl">To</label>
+          <input
+            id="receiver"
+            type="text"
+            name="receiver"
+            ngModel
+            #receiver="ngModel"
+            class="border-3 border-gray-600 rounded-md text-center p-2 focus:border-green-400"
+          />
+        </div>
+        <div class="w-1/4 max-md:w-1/1 flex flex-col text-center p-3">
+          <div class="text-2xl">Templates</div>
+          <div
+            class="flex flex-wrap justify-center h-[14vh] overflow-y-auto items-center border-2 border-gray-600 rounded-md p-2"
+          >
+            <button
+              *ngFor="let templateData of messageTemplates; let i = index"
+              (click)="this.messageData = templateData.content"
+              type="button"
+              class="w-1/1 bg-pink-300 p-1 rounded-xl my-2 hover:cursor-pointer transition-colors hover:bg-pink-200"
+            >
+              {{ templateData.name }}
+            </button>
+          </div>
+        </div>
+        <div class="w-3/4 max-md:w-1/1 flex flex-col text-center p-3">
+          <label for="message" class="text-2xl">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            ngModel
+            #message="ngModel"
+            [(ngModel)]="messageData"
+            #messageTextArea
+            class="border-3 border-gray-600 rounded-md p-3 focus:border-green-400"
+          ></textarea>
+        </div>
+        <div class="w-1/1 text-center">
+          <button
+            type="submit"
+            class="text-lg text-white text-stroke-1 bg-green-600 py-2 px-5 rounded-2xl transition-colors active:bg-green-400 hover:bg-green-400 hover:cursor-pointer"
+          >
+            Generate Link
+          </button>
+        </div>
+      </form>
+      <div class="text-center p-3 m-3">
+        <button
+          (click)="copyLink()"
+          #linkContainerRef
+          class="border-2 border-black text-green-800 rounded-2xl overflow-hidden px-5 py-2 min-h-[2vw] max-h-[10vw] w-[80%] max-md:w-[100%] transition-colors hover:cursor-pointer hover:border-green-500 active:border-green-500"
+        >
+          Click Generate link button!
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
