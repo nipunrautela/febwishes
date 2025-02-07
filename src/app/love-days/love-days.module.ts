@@ -13,7 +13,6 @@ import { TeddydayComponent } from './teddyday/teddyday.component';
 import { PromisedayComponent } from './promiseday/promiseday.component';
 import { HugdayComponent } from './hugday/hugday.component';
 import { ValentinesdayComponent } from './valentinesday/valentinesday.component';
-import { RosedayBuildComponent } from './roseday/roseday-build/roseday-build.component';
 import { LetterComponent } from '../shared/letter/letter.component';
 
 
@@ -29,7 +28,6 @@ import { LetterComponent } from '../shared/letter/letter.component';
     PromisedayComponent,
     HugdayComponent,
     ValentinesdayComponent,
-    RosedayBuildComponent,
     LetterComponent
   ],
   imports: [
