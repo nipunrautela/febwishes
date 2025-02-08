@@ -11,4 +11,8 @@ export class LoveDaysComponent {
 
   days: Day[] = days;
 
+  todayDate = new Date().getDate();
+  tomorrowDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).getDate();
+
+  filteredDays = days.filter(day => (day.date.getDate() === this.todayDate || day.date.getDate() === this.tomorrowDate));
 }
