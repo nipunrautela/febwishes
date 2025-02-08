@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, KeyValuePipe } from '@angular/common';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 import { LoveDaysRoutingModule } from './love-days-routing.module';
 import { RosedayComponent } from './roseday/roseday.component';
@@ -32,7 +33,9 @@ import { LetterComponent } from '../shared/letter/letter.component';
     CommonModule,
     LoveDaysRoutingModule,
     DatePipe,
-    FormsModule
+    FormsModule,
+    KeyValuePipe,
+    CdkDrag
   ]
 })
 export class LoveDaysModule { }

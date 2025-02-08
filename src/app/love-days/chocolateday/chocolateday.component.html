@@ -1,6 +1,214 @@
-<section class="h-[92vh]">
-    <h1 class="text-center text-6xl text-pink-700 py-10">Chocolate Day</h1>
-    <div class="flex flex-col justify-center items-center my-20">
-        <h1 class="text-center text-6xl bg-pink-400 p-10 rounded-2xl text-white text-stroke-1">Under Progress</h1>
+<section class="h-[92vh] overflow-y-auto">
+  <h1 class="text-center text-6xl max-md:text-4xl text-pink-700 py-10">
+    Chocolate Day
+  </h1>
+  <div *ngIf="!!data">
+    <div class="flex flex-wrap">
+      <div class="w-1/1 flex flex-wrap justify-center items-center">
+        <p class="w-1/1 text-center text-2xl max-md:text-1xl">
+          Chocolates from
+        </p>
+        <p
+          class="w-1/1 text-center text-6xl max-md:text-4xl text-amber-300 text-stroke-1"
+        >
+          {{ data.sender }}
+        </p>
+      </div>
+      <div class="w-2/3 max-md:w-1/1 py-6 flex justify-center items-center">
+        <div
+          class="chocolate-boundary w-[100vw] h-[50vh] border-2 overflow-clip rounded-2xl"
+        >
+          <div
+            class="fixed w-[20%] max-md:w-[40%]"
+            *ngFor="let c of data.chocolates; let i = index"
+            cdkDrag
+            cdkDragBoundary=".chocolate-boundary"
+            id="choco-{{ c.chocolateKey }}"
+          >
+            <div (pointerdown)="imgTouched(c.chocolateKey, i)">
+              <img
+                src="{{ chocolates[c.chocolateKey].imgLink }}"
+                alt="chocolates[c.chocolateKey].name"
+                class="border-2 border-pink-500"
+              />
+              <p>x{{ c.qty }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-1/3 max-md:w-1/1 flex flex-wrap p-5"
+        *ngIf="!!selectedChocolate"
+      >
+        <div
+          class="w-1/1 flex flex-wrap justify-center items-center border-2 rounded-xl"
+        >
+          <div class="w-1/1 text-center text-2xl">Chocolate Info</div>
+          <div class="w-4/5 flex flex-wrap">
+            <img
+              src="{{ selectedChocolate!.imgLink }}"
+              alt="{{ selectedChocolate!.name }}"
+              class="w-1/1 border-1 border-brown-500"
+            />
+            <p class="w-1/1">
+              Brand:
+              <span class="text-2xl text-amber-600">{{
+                selectedChocolate!.brand
+              }}</span>
+            </p>
+            <p class="w-1/1">
+              Name:
+              <span class="text-md text-blue-600">{{
+                selectedChocolate!.name
+              }}</span>
+            </p>
+            <p class="w-1/1">
+              Quantity:
+              <span class="text-md text-blue-600">{{
+                selectedChocolateQty
+              }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="p-5 bg-pink-200 mx-20 max-md:mx-2 rounded-2xl" *ngIf="!data">
+    <div class="flex flex-wrap justify-center items-center">
+      <div
+        class="w-1/2 max-md:w-1/1 flex flex-wrap bg-blue-200 p-3 rounded-2xl my-2 sticky"
+      >
+        <div class="w-1/2 text-2xl text-center">Budget</div>
+        <div class="w-1/2 text-2xl text-center text-pink-600 overflow-clip">
+          <label for="budget" class="flex">
+            <p class="px-2">$</p>
+            <p class="w-1/1 bg-blue-100 ps-3 rounded-2xl">{{ budget }}</p>
+          </label>
+        </div>
+      </div>
+      <div class="w-3/4 max-md:w-1/1 text-center bg-pink-50 rounded-2xl">
+        <h2 class="text-2xl p-5 text-pink-500 bg-pink-100 rounded-t-2xl">
+          Shopping Zone
+        </h2>
+        <div
+          class="flex flex-wrap p-2 h-[60vh] overflow-y-auto border-t-2 rounded-b-2xl"
+        >
+          <div
+            class="w-1/4 max-lg:w-1/3 max-md:w-1/2 p-2"
+            *ngFor="let chocolate of chocolates; let i = index"
+            (click)="addChocolateToCart(i)"
+            draggable="true"
+          >
+            <div
+              class="flex flex-wrap items-center justify-center p-2 border-2 rounded-xl bg-amber-100 h-[100%]"
+            >
+              <img
+                [src]="chocolate.imgLink"
+                alt="Chocolate 1"
+                class="w-[200px] h-[150px]"
+              />
+              <p class="w-1/1 text-xl text-green-500 text-stroke-1">
+                $ {{ chocolate.price }}
+              </p>
+              <p class="w-1/1">{{ chocolate.brand }}</p>
+              <p class="w-1/1 text-sm">{{ chocolate.name }}</p>
+              <div class="flex flex-wrap justify-around item-action w-1/1">
+                <button
+                  (click)="addChocolateToCart(i)"
+                  class="w-2/4 bg-pink-400 rounded-lg transition-colors hover:bg-pink-300 hover:cursor-pointer"
+                >
+                  Add
+                </button>
+                <div class="w-1/4 bg-pink-100">{{ cart[i]?.qty ?? 0 }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-1/4 max-md:w-1/1 text-center p-2">
+        <h2 class="text-2xl p-5 text-pink-500 bg-pink-100 rounded-t-2xl">
+          Cart
+        </h2>
+        <div
+          class="flex flex-wrap p-2 h-[60vh] overflow-y-auto border-t-2 bg-pink-50 rounded-b-2xl"
+        >
+          <div
+            class="w-1/1 max-md:w-1/2 max-sm:w-1/1 p-2"
+            *ngFor="let cartItem of cart | keyvalue"
+          >
+            <div
+              class="flex flex-wrap justify-center items-center p-2 border-2 rounded-xl"
+            >
+              <img
+                src="{{ cartItem.value!.chocolate.imgLink }}"
+                alt="{{
+                  cartItem.value!.chocolate.brand +
+                    ' ' +
+                    cartItem.value!.chocolate.name
+                }}"
+                class="w-[100px] h-[100px]"
+              />
+              <p class="w-1/1">{{ cartItem.value!.chocolate.name }}</p>
+              <div class="flex flex-wrap justify-around item-action w-1/1">
+                <button
+                  (click)="deleteItemFromCart(asNumber(cartItem.key))"
+                  class="w-1/2 bg-red-400 rounded-lg transition-colors hover:cursor-pointer hover:bg-red-300 active:bg-red-300"
+                >
+                  Delete
+                </button>
+                <button
+                  (click)="decreaseItemQtyInCart(asNumber(cartItem.key))"
+                  class="w-1/6 bg-gray-400 rounded-lg transition-colors hover:bg-gray-300 hover:cursor-pointer active:bg-gray-300"
+                >
+                  -
+                </button>
+                <p>{{ cartItem.value!.qty }}</p>
+                <button
+                  (click)="increaseItemQtyInCart(asNumber(cartItem.key))"
+                  class="w-1/6 bg-green-400 rounded-lg transition-colors hover:bg-green-300 hover:cursor-pointer active:bg-green-300"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-center items-end p-5">
+        <div class="w-1/1 flex justify-center items-center py-2">
+          <label for="sender" class="text-xl text-blue-500">
+            Your Name
+            <input
+              type="text"
+              name="name"
+              id="name"
+              [(ngModel)]="sender"
+              class="p-2 border-2 rounded-lg border-pink-500 text-amber-400 text-stroke-1 text-center text-2xl"
+            />
+          </label>
+        </div>
+        <div class="w-1/1 flex justify-center items-center">
+          <button
+            class="bg-blue-300 p-3 rounded-2xl transition-colors hover:bg-blue-200 hover:cursor-pointer active:bg-blue300"
+            (click)="generateLink()"
+          >
+            Generate Link
+          </button>
+        </div>
+        <button
+          class="w-1/1 flex justify-center items-center max-w-[80vw] overflow-clip my-2 p-2 border-2 border-green-800 rounded-2xl transition-colors"
+          #linkContainerRef
+          (click)="onClickLink()"
+          [disabled]="!linkGenerated"
+          [ngClass]="{
+            'hover:border-green-500 hover:cursor-pointer active:border-green-500':
+              linkGenerated,
+            'border-gray-600 hover:cursor-not-allowed': !linkGenerated
+          }"
+        >
+          Click Generate link to copy
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
