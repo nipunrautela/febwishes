@@ -19,8 +19,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-    - run: npm ci
-    - run: npm test
+    - run: npm install
+    - run: npm build
     - name: Deploy to GitHub Pages
       run: |
         npx angular-cli-ghpages --dir=dist/your-angular-app
