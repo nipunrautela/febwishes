@@ -23,7 +23,7 @@ jobs:
     - run: npm run build
     - name: Deploy to GitHub Pages
       run: |
-        npx angular-cli-ghpages
+        npx angular-cli-ghpages --base-href=/febwishes --dir=dist
       env:
         CI: true
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
