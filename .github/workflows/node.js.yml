@@ -23,7 +23,7 @@ jobs:
     - run: npm run build --base-href=/febwishes
     - name: Deploy to GitHub Pages
       run: |
-        npx angular-cli-ghpages --dir=dist/febwishes/browser
+        npx angular-cli-ghpages --dir=dist/febwishes/browser --no-silent
         # npm install -g @angular/cli
         # ng add angular-cli-ghpages --skip-confirmation --force
         # ng deploy --base-href=/febwishes
