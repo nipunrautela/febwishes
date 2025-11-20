@@ -23,7 +23,7 @@ jobs:
       with:
         node-version: 20
     - run: npm install -f
-    - run: npm run build --base-href=/febwishes
+    - run: npm run build
     # - name: Deploy to GitHub Pages
     #   run: |
     #     git config --global user.email "you@example.com"
