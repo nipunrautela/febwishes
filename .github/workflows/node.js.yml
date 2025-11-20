@@ -25,7 +25,7 @@ jobs:
       run: |
         # npx angular-cli-ghpages --base-href=/febwishes --dir=dist
         npm install -g @angular/cli
-        ng add angular-cli-ghpages --skip-confirmation
+        ng add angular-cli-ghpages --skip-confirmation --force
         ng deploy --base-href=/febwishes
       env:
         CI: true
