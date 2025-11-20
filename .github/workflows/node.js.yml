@@ -23,6 +23,8 @@ jobs:
     - run: npm run build --base-href=/febwishes
     - name: Deploy to GitHub Pages
       run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Nipun Rautela"
         npx angular-cli-ghpages --dir=dist/febwishes/browser --no-silent
         # npm install -g @angular/cli
         # ng add angular-cli-ghpages --skip-confirmation --force
