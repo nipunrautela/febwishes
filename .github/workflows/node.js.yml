@@ -24,6 +24,7 @@ jobs:
     - name: Deploy to GitHub Pages
       run: |
         # npx angular-cli-ghpages --base-href=/febwishes --dir=dist
+        npm install -g @angular/cli
         ng add angular-cli-ghpages
         ng deploy --base-href=/febwishes
       env:
