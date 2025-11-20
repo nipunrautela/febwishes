@@ -23,10 +23,10 @@ jobs:
     - run: npm run build
     - name: Deploy to GitHub Pages
       run: |
-        # npx angular-cli-ghpages --base-href=/febwishes --dir=dist
-        npm install -g @angular/cli
-        ng add angular-cli-ghpages --skip-confirmation --force
-        ng deploy --base-href=/febwishes
+        npx angular-cli-ghpages --dir=dist
+        # npm install -g @angular/cli
+        # ng add angular-cli-ghpages --skip-confirmation --force
+        # ng deploy --base-href=/febwishes
       env:
         CI: true
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
